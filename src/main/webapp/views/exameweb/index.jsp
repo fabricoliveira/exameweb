@@ -23,15 +23,21 @@
 				</h3>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col s12">
-				<s:if test="hasActionErrors()">
-					<div class="errors">
-						<s:actionerror />
-					</div>
-				</s:if>
+		
+		<s:if test="hasActionErrors()">
+			<div class="row">
+				<div class="col s12">
+					<div class="card red accent-1">
+						<div class="card-content white-text">
+							<p>
+								<s:actionerror/>
+							</p>
+	        			</div>
+		        	</div>
+		        </div>
 			</div>
-		</div>
+		</s:if>
+		
 		<div class="row">
 			<s:form id="buscarForm" action="buscar" method="post" class="col s12">
 				<div class="row">
@@ -65,9 +71,9 @@
 			</s:form>
 		</div>
 
-		<div class="row">
-			<div id="resultados" class="col s12">
-				<s:if test="exames">
+		<s:if test="exames">
+			<div class="row">
+				<div id="resultados" class="col s12">
 					<br>
 					<h5><s:text name="global.exames.encontrados" /></h5>
 					<hr>
@@ -76,13 +82,23 @@
 					</s:if>
 					<s:else>
 						<br>
-						<div class="orange lighten-5">
-							<h5>Não foi encontrado nenhum exame</h5>
+						
+						<div class="row">
+							<div class="col s12">
+								<div class="card orange lighten-5">
+									<div class="card-content">
+										<span class="card-title">
+											<s:text name="global.exames.nao.encontrados" />
+										</span>
+				        			</div>
+					        	</div>
+					        </div>
 						</div>
+						
 					</s:else>
-				</s:if>
+				</div>
 			</div>
-		</div>
+		</s:if>
 		
 		<div class="row">
 			<div class="col s12">

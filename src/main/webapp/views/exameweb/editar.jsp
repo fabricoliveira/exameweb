@@ -30,15 +30,19 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col s12">
-				<s:if test="hasActionErrors()">
-					<div class="errors red accent-1">
-						<s:actionerror/> 
-					</div>
-				</s:if>
+		<s:if test="hasActionErrors()">
+			<div class="row">
+				<div class="col s12">
+					<div class="card red accent-1">
+						<div class="card-content white-text">
+							<p>
+								<s:actionerror/>
+							</p>
+	        			</div>
+		        	</div>
+		        </div>
 			</div>
-		</div>
+		</s:if>
 		
 		<div class="row">
 			<div id="editarForm">

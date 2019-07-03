@@ -33,7 +33,7 @@ public class DeleteAction extends ActionSupport {
 	
 	public String deletarExame() throws AutorizacaoException, ParametroInvalidoException {
 		Token token = new Token();
-		token.setToken("BBB");
+		token.setToken("AAA");
 		
 		try {
 			new ExameService().deletarExame(token, idExame);
