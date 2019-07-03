@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    
+    <constant name="struts.devMode" value="true" />
+	
+	<!-- Permite que os campos da JSP sejam manipulados livremente pelo programador -->
+    <constant name="struts.ui.theme" value="simple" />
+    
+    
+	<!-- Esconde o .action da URL -->
+	<constant name="struts.action.extension" value="," />
+	
+	
+	<!-- Habilita a Internacionalização e Localização -->
+	<constant name="struts.custom.i18n.resources" value="global" />
+	
+	
+	<!-- Permite usar explicitamente o método de uma action -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	
+	
+    <package name="exameweb" namespace="/" extends="struts-default">
+    
+        <action name="index" class="br.com.soc.exame.web.actions.ExameAction">
+            <result name="success">views/exameweb/index.jsp</result>
+        </action>
+        
+        <action name="buscar" class="br.com.soc.exame.web.actions.ExameAction" method="buscarExames">
+            <result name="success">views/exameweb/index.jsp</result>
+            <result name="error" type="redirect">index</result>
+    		<result name="input" type="redirect">index</result>
+        </action>
+        
+        <action name="salvar" class="br.com.soc.exame.web.actions.SalvarAction">
+            <result name="success" type="redirect">buscar</result>
+    		<result name="error">views/exameweb/editar.jsp</result>
+    		<result name="input">views/exameweb/editar.jsp</result>
+        </action>
+        
+        <action name="adicionar" class="br.com.soc.exame.web.actions.AdicionarAction">
+            <result name="success">views/exameweb/editar.jsp</result>
+    		<result name="input" type="redirect">buscar</result>
+        </action>
+        
+        <action name="alterar" class="br.com.soc.exame.web.actions.AtualizarAction">
+        	<result name="success">views/exameweb/editar.jsp</result>
+        	<result name="error" type="redirect">buscar</result>
+		</action>
+		
+		<action name="deletar" class="br.com.soc.exame.web.actions.DeleteAction">
+	       	<result name="success" type="chain">buscar</result>
+		</action>
+    </package>
+
+</struts>

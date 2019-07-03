@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ExameWSService" targetNamespace="http://ws.exame.soc.com.br/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.exame.soc.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://ws.exame.soc.com.br/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.exame.soc.com.br/">
+  <xs:element name="AdicionarUmExame" type="tns:AdicionarUmExame"/>
+  <xs:element name="AdicionarUmExameResponse" type="tns:AdicionarUmExameResponse"/>
+  <xs:element name="AtualizarUmExame" type="tns:AtualizarUmExame"/>
+  <xs:element name="AtualizarUmExameResponse" type="tns:AtualizarUmExameResponse"/>
+  <xs:element name="BuscarExamePorId" type="tns:BuscarExamePorId"/>
+  <xs:element name="BuscarExamePorIdResponse" type="tns:BuscarExamePorIdResponse"/>
+  <xs:element name="BuscarMedicoPorId" type="tns:BuscarMedicoPorId"/>
+  <xs:element name="BuscarMedicoPorIdResponse" type="tns:BuscarMedicoPorIdResponse"/>
+  <xs:element name="BuscarPacientePorId" type="tns:BuscarPacientePorId"/>
+  <xs:element name="BuscarPacientePorIdResponse" type="tns:BuscarPacientePorIdResponse"/>
+  <xs:element name="BuscarTodosOsExames" type="tns:BuscarTodosOsExames"/>
+  <xs:element name="BuscarTodosOsExamesPorMedico" type="tns:BuscarTodosOsExamesPorMedico"/>
+  <xs:element name="BuscarTodosOsExamesPorMedicoEPaciente" type="tns:BuscarTodosOsExamesPorMedicoEPaciente"/>
+  <xs:element name="BuscarTodosOsExamesPorMedicoEPacienteResponse" type="tns:BuscarTodosOsExamesPorMedicoEPacienteResponse"/>
+  <xs:element name="BuscarTodosOsExamesPorMedicoResponse" type="tns:BuscarTodosOsExamesPorMedicoResponse"/>
+  <xs:element name="BuscarTodosOsExamesPorPaciente" type="tns:BuscarTodosOsExamesPorPaciente"/>
+  <xs:element name="BuscarTodosOsExamesPorPacienteResponse" type="tns:BuscarTodosOsExamesPorPacienteResponse"/>
+  <xs:element name="BuscarTodosOsExamesResponse" type="tns:BuscarTodosOsExamesResponse"/>
+  <xs:element name="BuscarTodosOsMedicos" type="tns:BuscarTodosOsMedicos"/>
+  <xs:element name="BuscarTodosOsMedicosResponse" type="tns:BuscarTodosOsMedicosResponse"/>
+  <xs:element name="BuscarTodosOsPacientes" type="tns:BuscarTodosOsPacientes"/>
+  <xs:element name="BuscarTodosOsPacientesResponse" type="tns:BuscarTodosOsPacientesResponse"/>
+  <xs:element name="DeletarUmExame" type="tns:DeletarUmExame"/>
+  <xs:element name="DeletarUmExameResponse" type="tns:DeletarUmExameResponse"/>
+  <xs:element name="adicionaExameDTO" type="tns:adicionaExameDTO"/>
+  <xs:element name="atualizaExameDTO" type="tns:atualizaExameDTO"/>
+  <xs:element name="exame" type="tns:exame"/>
+  <xs:element name="listaExamesDTO" type="tns:listaExamesDTO"/>
+  <xs:element name="listaMedicosDTO" type="tns:listaMedicosDTO"/>
+  <xs:element name="listaPacientesDTO" type="tns:listaPacientesDTO"/>
+  <xs:element name="token" type="tns:token"/>
+  <xs:complexType name="BuscarTodosOsExamesPorPaciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPaciente" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsExamesPorPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exames" type="tns:listaExamesDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listaExamesDTO">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="exame" type="tns:exame"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="exame">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element name="data" type="xs:string"/>
+      <xs:element name="hora" type="xs:string"/>
+      <xs:element minOccurs="0" name="diagnostico" type="xs:string"/>
+      <xs:element name="paciente" type="tns:paciente"/>
+      <xs:element name="medico" type="tns:medico"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="paciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="idade" type="xs:int"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="medico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="crm" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdicionarUmExame">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exame" type="tns:adicionaExameDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="adicionaExameDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="data" type="xs:string"/>
+      <xs:element minOccurs="0" name="hora" type="xs:string"/>
+      <xs:element minOccurs="0" name="diagnostico" type="xs:string"/>
+      <xs:element minOccurs="0" name="idPaciente" type="xs:long"/>
+      <xs:element minOccurs="0" name="idMedico" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="token">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdicionarUmExameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exame" type="tns:exame"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsExames">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsExamesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exames" type="tns:listaExamesDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsMedicos">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsMedicosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="medicos" type="tns:listaMedicosDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listaMedicosDTO">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="medico" type="tns:medico"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarExamePorId">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idExame" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarExamePorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exame" type="tns:exame"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeletarUmExame">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idExame" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeletarUmExameResponse">
+    <xs:sequence>
+      <xs:element name="exame" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarPacientePorId">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPaciente" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarPacientePorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="paciente" type="tns:paciente"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AtualizarUmExame">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exame" type="tns:atualizaExameDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="atualizaExameDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="data" type="xs:string"/>
+      <xs:element minOccurs="0" name="hora" type="xs:string"/>
+      <xs:element minOccurs="0" name="diagnostico" type="xs:string"/>
+      <xs:element minOccurs="0" name="idPaciente" type="xs:long"/>
+      <xs:element minOccurs="0" name="idMedico" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AtualizarUmExameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exame" type="tns:exame"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsExamesPorMedicoEPaciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idMedico" type="xs:long"/>
+      <xs:element minOccurs="0" name="idPaciente" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsExamesPorMedicoEPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exames" type="tns:listaExamesDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarMedicoPorId">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idMedico" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarMedicoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="medico" type="tns:medico"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsPacientes">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsPacientesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="pacientes" type="tns:listaPacientesDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listaPacientesDTO">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="paciente" type="tns:paciente"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsExamesPorMedico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idMedico" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BuscarTodosOsExamesPorMedicoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exames" type="tns:listaExamesDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ParametroInvalidoFault" nillable="true" type="xs:string"/>
+  <xs:element name="ExameFault" nillable="true" type="xs:string"/>
+  <xs:element name="AutorizacaoFault" nillable="true" type="xs:string"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="BuscarTodosOsExamesPorPaciente">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsExamesPorPaciente">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdicionarUmExame">
+    <wsdl:part name="parameters" element="tns:AdicionarUmExame">
+    </wsdl:part>
+    <wsdl:part name="token" element="tns:token">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsExamesResponse">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsExamesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ExameValidatorException">
+    <wsdl:part name="ExameValidatorException" element="tns:ExameFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsExamesPorMedicoResponse">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsExamesPorMedicoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AtualizarUmExame">
+    <wsdl:part name="parameters" element="tns:AtualizarUmExame">
+    </wsdl:part>
+    <wsdl:part name="token" element="tns:token">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsExamesPorMedicoEPaciente">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsExamesPorMedicoEPaciente">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeletarUmExameResponse">
+    <wsdl:part name="parameters" element="tns:DeletarUmExameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsPacientes">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsPacientes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarMedicoPorIdResponse">
+    <wsdl:part name="parameters" element="tns:BuscarMedicoPorIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ParametroInvalidoException">
+    <wsdl:part name="ParametroInvalidoException" element="tns:ParametroInvalidoFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsExamesPorMedico">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsExamesPorMedico">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsExames">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsExames">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsMedicos">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsMedicos">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarExamePorIdResponse">
+    <wsdl:part name="parameters" element="tns:BuscarExamePorIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdicionarUmExameResponse">
+    <wsdl:part name="parameters" element="tns:AdicionarUmExameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsMedicosResponse">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsMedicosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarExamePorId">
+    <wsdl:part name="parameters" element="tns:BuscarExamePorId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeletarUmExame">
+    <wsdl:part name="parameters" element="tns:DeletarUmExame">
+    </wsdl:part>
+    <wsdl:part name="token" element="tns:token">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarPacientePorId">
+    <wsdl:part name="parameters" element="tns:BuscarPacientePorId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AutorizacaoException">
+    <wsdl:part name="AutorizacaoException" element="tns:AutorizacaoFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsExamesPorMedicoEPacienteResponse">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsExamesPorMedicoEPacienteResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarMedicoPorId">
+    <wsdl:part name="parameters" element="tns:BuscarMedicoPorId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsPacientesResponse">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsPacientesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarPacientePorIdResponse">
+    <wsdl:part name="parameters" element="tns:BuscarPacientePorIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BuscarTodosOsExamesPorPacienteResponse">
+    <wsdl:part name="parameters" element="tns:BuscarTodosOsExamesPorPacienteResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AtualizarUmExameResponse">
+    <wsdl:part name="parameters" element="tns:AtualizarUmExameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ExameWS">
+    <wsdl:operation name="BuscarTodosOsExamesPorPaciente">
+      <wsdl:input name="BuscarTodosOsExamesPorPaciente" message="tns:BuscarTodosOsExamesPorPaciente">
+    </wsdl:input>
+      <wsdl:output name="BuscarTodosOsExamesPorPacienteResponse" message="tns:BuscarTodosOsExamesPorPacienteResponse">
+    </wsdl:output>
+      <wsdl:fault name="ParametroInvalidoException" message="tns:ParametroInvalidoException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AdicionarUmExame">
+      <wsdl:input name="AdicionarUmExame" message="tns:AdicionarUmExame">
+    </wsdl:input>
+      <wsdl:output name="AdicionarUmExameResponse" message="tns:AdicionarUmExameResponse">
+    </wsdl:output>
+      <wsdl:fault name="ExameValidatorException" message="tns:ExameValidatorException">
+    </wsdl:fault>
+      <wsdl:fault name="AutorizacaoException" message="tns:AutorizacaoException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsExames">
+      <wsdl:input name="BuscarTodosOsExames" message="tns:BuscarTodosOsExames">
+    </wsdl:input>
+      <wsdl:output name="BuscarTodosOsExamesResponse" message="tns:BuscarTodosOsExamesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsMedicos">
+      <wsdl:input name="BuscarTodosOsMedicos" message="tns:BuscarTodosOsMedicos">
+    </wsdl:input>
+      <wsdl:output name="BuscarTodosOsMedicosResponse" message="tns:BuscarTodosOsMedicosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarExamePorId">
+      <wsdl:input name="BuscarExamePorId" message="tns:BuscarExamePorId">
+    </wsdl:input>
+      <wsdl:output name="BuscarExamePorIdResponse" message="tns:BuscarExamePorIdResponse">
+    </wsdl:output>
+      <wsdl:fault name="ParametroInvalidoException" message="tns:ParametroInvalidoException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeletarUmExame">
+      <wsdl:input name="DeletarUmExame" message="tns:DeletarUmExame">
+    </wsdl:input>
+      <wsdl:output name="DeletarUmExameResponse" message="tns:DeletarUmExameResponse">
+    </wsdl:output>
+      <wsdl:fault name="AutorizacaoException" message="tns:AutorizacaoException">
+    </wsdl:fault>
+      <wsdl:fault name="ParametroInvalidoException" message="tns:ParametroInvalidoException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPacientePorId">
+      <wsdl:input name="BuscarPacientePorId" message="tns:BuscarPacientePorId">
+    </wsdl:input>
+      <wsdl:output name="BuscarPacientePorIdResponse" message="tns:BuscarPacientePorIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AtualizarUmExame">
+      <wsdl:input name="AtualizarUmExame" message="tns:AtualizarUmExame">
+    </wsdl:input>
+      <wsdl:output name="AtualizarUmExameResponse" message="tns:AtualizarUmExameResponse">
+    </wsdl:output>
+      <wsdl:fault name="ExameValidatorException" message="tns:ExameValidatorException">
+    </wsdl:fault>
+      <wsdl:fault name="AutorizacaoException" message="tns:AutorizacaoException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsExamesPorMedicoEPaciente">
+      <wsdl:input name="BuscarTodosOsExamesPorMedicoEPaciente" message="tns:BuscarTodosOsExamesPorMedicoEPaciente">
+    </wsdl:input>
+      <wsdl:output name="BuscarTodosOsExamesPorMedicoEPacienteResponse" message="tns:BuscarTodosOsExamesPorMedicoEPacienteResponse">
+    </wsdl:output>
+      <wsdl:fault name="ParametroInvalidoException" message="tns:ParametroInvalidoException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarMedicoPorId">
+      <wsdl:input name="BuscarMedicoPorId" message="tns:BuscarMedicoPorId">
+    </wsdl:input>
+      <wsdl:output name="BuscarMedicoPorIdResponse" message="tns:BuscarMedicoPorIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsPacientes">
+      <wsdl:input name="BuscarTodosOsPacientes" message="tns:BuscarTodosOsPacientes">
+    </wsdl:input>
+      <wsdl:output name="BuscarTodosOsPacientesResponse" message="tns:BuscarTodosOsPacientesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsExamesPorMedico">
+      <wsdl:input name="BuscarTodosOsExamesPorMedico" message="tns:BuscarTodosOsExamesPorMedico">
+    </wsdl:input>
+      <wsdl:output name="BuscarTodosOsExamesPorMedicoResponse" message="tns:BuscarTodosOsExamesPorMedicoResponse">
+    </wsdl:output>
+      <wsdl:fault name="ParametroInvalidoException" message="tns:ParametroInvalidoException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExameWSServiceSoapBinding" type="tns:ExameWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="BuscarTodosOsExamesPorPaciente">
+      <soap:operation soapAction="BuscarTodosOsExamesPorPaciente" style="document"/>
+      <wsdl:input name="BuscarTodosOsExamesPorPaciente">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarTodosOsExamesPorPacienteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParametroInvalidoException">
+        <soap:fault name="ParametroInvalidoException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsMedicos">
+      <soap:operation soapAction="BuscarTodosOsMedicos" style="document"/>
+      <wsdl:input name="BuscarTodosOsMedicos">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarTodosOsMedicosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsExames">
+      <soap:operation soapAction="BuscarTodosOsExames" style="document"/>
+      <wsdl:input name="BuscarTodosOsExames">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarTodosOsExamesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdicionarUmExame">
+      <soap:operation soapAction="AdicionarUmExame" style="document"/>
+      <wsdl:input name="AdicionarUmExame">
+        <soap:header message="tns:AdicionarUmExame" part="token" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="AdicionarUmExameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ExameValidatorException">
+        <soap:fault name="ExameValidatorException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AutorizacaoException">
+        <soap:fault name="AutorizacaoException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarExamePorId">
+      <soap:operation soapAction="BuscarExamePorId" style="document"/>
+      <wsdl:input name="BuscarExamePorId">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarExamePorIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParametroInvalidoException">
+        <soap:fault name="ParametroInvalidoException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeletarUmExame">
+      <soap:operation soapAction="DeletarUmExame" style="document"/>
+      <wsdl:input name="DeletarUmExame">
+        <soap:header message="tns:DeletarUmExame" part="token" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeletarUmExameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AutorizacaoException">
+        <soap:fault name="AutorizacaoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ParametroInvalidoException">
+        <soap:fault name="ParametroInvalidoException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPacientePorId">
+      <soap:operation soapAction="BuscarPacientePorId" style="document"/>
+      <wsdl:input name="BuscarPacientePorId">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarPacientePorIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AtualizarUmExame">
+      <soap:operation soapAction="AtualizarUmExame" style="document"/>
+      <wsdl:input name="AtualizarUmExame">
+        <soap:header message="tns:AtualizarUmExame" part="token" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="AtualizarUmExameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ExameValidatorException">
+        <soap:fault name="ExameValidatorException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AutorizacaoException">
+        <soap:fault name="AutorizacaoException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsExamesPorMedicoEPaciente">
+      <soap:operation soapAction="BuscarTodosOsExamesPorMedicoEPaciente" style="document"/>
+      <wsdl:input name="BuscarTodosOsExamesPorMedicoEPaciente">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarTodosOsExamesPorMedicoEPacienteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParametroInvalidoException">
+        <soap:fault name="ParametroInvalidoException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarMedicoPorId">
+      <soap:operation soapAction="BuscarMedicoPorId" style="document"/>
+      <wsdl:input name="BuscarMedicoPorId">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarMedicoPorIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsPacientes">
+      <soap:operation soapAction="BuscarTodosOsPacientes" style="document"/>
+      <wsdl:input name="BuscarTodosOsPacientes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarTodosOsPacientesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarTodosOsExamesPorMedico">
+      <soap:operation soapAction="BuscarTodosOsExamesPorMedico" style="document"/>
+      <wsdl:input name="BuscarTodosOsExamesPorMedico">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="BuscarTodosOsExamesPorMedicoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParametroInvalidoException">
+        <soap:fault name="ParametroInvalidoException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExameWSService">
+    <wsdl:port name="ExameWS" binding="tns:ExameWSServiceSoapBinding">
+      <soap:address location="http://localhost:9090/ExameWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
