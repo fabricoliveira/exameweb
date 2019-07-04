@@ -41,29 +41,7 @@
 		<div class="row">
 			<s:form id="buscarForm" action="buscar" method="post" class="col s12">
 				<div class="row">
-					<div class="input-field col s6">
-						<s:select key="global.paciente" 
-								  name="paciente"
-								  id="paciente"
-								  list="pacientes"
-								  listKey="id"
-								  listValue="nome"
-								  headerKey="null"
-								  headerValue="Todos" />
-						<label for="paciente">Paciente</label>
-					</div>
-					
-					<div class="input-field col s6">
-						<s:select key="global.medico" 
-								  name="medico"
-								  id="medico"
-								  list="medicos" 
-								  listKey="id" 
-								  listValue="nome" 
-								  headerKey="null"
-								  headerValue="Todos" />
-						<label for="medico">Médico</label>
-					</div>
+					<s:include value="paciente_medico.jsp" />
 				</div>
 
 				<s:submit class="waves-effect waves-light btn" key="global.buscar" />

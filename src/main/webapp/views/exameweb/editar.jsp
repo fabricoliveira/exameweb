@@ -50,31 +50,7 @@
 					<div class="row">
 						<s:hidden name="idExame" id="idExame" value="%{idExame}" />
 						
-						<div class="input-field col s6">
-							<s:select key="global.paciente"
-								  name="paciente" 
-								  id="paciente"
-								  list="pacientes"
-								  listKey="id"
-								  listValue="nome"
-								  headerKey="null"
-								  headerValue="Selecione um paciente"
-								  />
-							<label for="paciente">Paciente</label>
-						</div>
-						
-						<div class="input-field col s6">
-							<s:select key="global.medico"
-							 		  name="medico"
-							 		  id="medico"
-							 		  list="medicos"
-							 		  listKey="id"
-							 		  listValue="nome"
-							 		  headerKey="null"
-							 		  headerValue="Selecione um médico"
-							 		  />
-							<label for="medico">Médico</label>
-						</div>
+						<s:include value="paciente_medico.jsp" />
 					</div>
 						
 					<div class="row">

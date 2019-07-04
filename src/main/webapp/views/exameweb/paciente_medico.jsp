@@ -2,20 +2,26 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 
-<s:select key="global.paciente"
+<div class="input-field col s6">
+	<s:select key="global.paciente"
 		  name="paciente" 
 		  id="paciente"
 		  list="pacientes"
 		  listKey="id"
 		  listValue="nome"
 		  headerKey="null"
-		  headerValue="Todos" />
+		  headerValue="Selecione um paciente" />
+	<label for="paciente">Paciente</label>
+</div>
 
-<s:select key="global.medico"
- 		  name="medico"
- 		  id="medico"
- 		  list="medicos"
- 		  listKey="id"
- 		  listValue="nome"
- 		  headerKey="null"
- 		  headerValue="Todos" />
+<div class="input-field col s6">
+	<s:select key="global.medico"
+	 		  name="medico"
+	 		  id="medico"
+	 		  list="medicos"
+	 		  listKey="id"
+	 		  listValue="nome"
+	 		  headerKey="null"
+	 		  headerValue="Selecione um médico" />
+	<label for="medico">Médico</label>
+</div>
